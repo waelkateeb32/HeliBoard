@@ -1,6 +1,3 @@
-// Custom AR layout: standard Arabic phone order with secondary hint symbols
-// Visual LTR (as on screen) == file order. Arabic subtype uses NoShiftKey.
-// Pair with localized number row (ar.txt already has ١-٠), custom functional row.
 [
   [
     { "label": "ض", "popup": { "main": { "label": "+" } } },

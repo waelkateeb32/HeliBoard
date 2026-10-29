@@ -1,6 +1,3 @@
-// Custom EN layout: QWERTY with Gboard/Samsung-like secondary hint symbols
-// Pair with: number row ON, show hints ON, hint source preferring "layout",
-// rounded theme + key borders, custom functional bottom row.
 [
   [
     { "label": "q", "popup": { "main": { "label": "+" } } },
