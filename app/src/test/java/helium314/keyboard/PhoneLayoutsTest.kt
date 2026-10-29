@@ -31,4 +31,11 @@ class PhoneLayoutsTest {
         val labels = rows[1].map { (it as? helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData)?.label }
         assertEquals(listOf(null, "!", "space", "language_switch", "period", "action"), labels)
     }
+
+    @Test fun westernDigitsByDefault() {
+        // localized (Arabic-Indic) number row is off by default -> 1234567890 on Arabic keyboard
+        kotlin.test.assertFalse(helium314.keyboard.latin.settings.Defaults.PREF_LOCALIZED_NUMBER_ROW)
+        val row = LayoutParser.parseJsonString(load("number_row/number_row.json")).first()
+        assertEquals(10, row.size)
+    }
 }

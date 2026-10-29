@@ -90,7 +90,7 @@
         android:imeSubtypeLocale="ar"
         android:languageTag="ar"
         android:imeSubtypeMode="keyboard"
-        android:imeSubtypeExtraValue="KeyboardLayoutSet=MAIN:arabic_phone|SYMBOLS:symbols_arabic|FUNCTIONAL:functional_keys_phone,NoShiftKey,SupportTouchPositionCorrection,EmojiCapable"
+        android:imeSubtypeExtraValue="KeyboardLayoutSet=MAIN:arabic_phone|SYMBOLS:symbols_arabic|FUNCTIONAL:functional_keys_phone,NoShiftKey,SupportTouchPositionCorrection,EmojiCapable,LocalizedNumberRow=false"
         android:isAsciiCapable="false"
     />
     <subtype android:icon="@drawable/ic_ime_switcher"

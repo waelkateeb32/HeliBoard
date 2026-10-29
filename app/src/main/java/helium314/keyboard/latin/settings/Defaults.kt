@@ -147,7 +147,7 @@ object Defaults {
     const val PREF_ONE_HANDED_SCALE = 1f
     const val PREF_SHOW_NUMBER_ROW = true
     const val PREF_SHOW_NUMBER_ROW_IN_SYMBOLS = true
-    const val PREF_LOCALIZED_NUMBER_ROW = true
+    const val PREF_LOCALIZED_NUMBER_ROW = false // Western digits on Arabic too; Arabic-Indic digits stay as long-press popups
     const val PREF_SHOW_NUMBER_ROW_HINTS = false
     const val PREF_CUSTOM_CURRENCY_KEY = ""
     const val PREF_SHOW_HINTS = true
