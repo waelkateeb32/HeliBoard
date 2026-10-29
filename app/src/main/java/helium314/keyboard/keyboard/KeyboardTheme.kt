@@ -152,16 +152,16 @@ private constructor(val themeId: Int, @JvmField val mStyleId: Int) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) DynamicColors(context, themeStyle, hasBorders, backgroundImage)
                     else getThemeColors(THEME_LIGHT, themeStyle, context, prefs, isNight)
                 }
-                THEME_LIGHT -> DefaultColors(
+                THEME_LIGHT -> DefaultColors( // Samsung One UI light
                     themeStyle,
                     hasBorders,
-                    ContextCompat.getColor(context, R.color.gesture_trail_color_lxx_light),
-                    ContextCompat.getColor(context, R.color.keyboard_background_lxx_light_border),
-                    ContextCompat.getColor(context, R.color.key_background_normal_lxx_light_border),
-                    ContextCompat.getColor(context, R.color.key_background_functional_lxx_light_border),
-                    ContextCompat.getColor(context, R.color.key_background_normal_lxx_light_border),
-                    ContextCompat.getColor(context, R.color.key_text_color_lxx_light),
-                    ContextCompat.getColor(context, R.color.key_hint_letter_color_lxx_light),
+                    "#4297FF".toColorInt(),
+                    "#EAEBEE".toColorInt(),
+                    "#FAFAFA".toColorInt(),
+                    "#D8D8DC".toColorInt(),
+                    "#FAFAFA".toColorInt(),
+                    "#3A3A3A".toColorInt(),
+                    "#A5A5A5".toColorInt(),
                     keyboardBackground = backgroundImage
                 )
                 THEME_DARK -> DefaultColors(
@@ -202,16 +202,16 @@ private constructor(val themeId: Int, @JvmField val mStyleId: Int) {
                     ContextCompat.getColor(context, R.color.key_hint_letter_color_lxx_dark),
                     keyboardBackground = backgroundImage
                 )
-                THEME_BLACK -> DefaultColors(
+                THEME_BLACK -> DefaultColors( // Samsung One UI dark
                     themeStyle,
                     hasBorders,
-                    ContextCompat.getColor(context, R.color.gesture_trail_color_lxx_dark),
-                    ContextCompat.getColor(context, R.color.background_amoled_black),
-                    ContextCompat.getColor(context, R.color.background_amoled_dark),
-                    ContextCompat.getColor(context, R.color.background_amoled_dark),
-                    ContextCompat.getColor(context, R.color.background_amoled_dark),
-                    ContextCompat.getColor(context, R.color.key_text_color_lxx_dark),
-                    ContextCompat.getColor(context, R.color.key_hint_letter_color_lxx_dark),
+                    "#3E88E2".toColorInt(),
+                    "#080808".toColorInt(),
+                    "#383838".toColorInt(),
+                    "#262626".toColorInt(),
+                    "#383838".toColorInt(),
+                    "#FAFAFA".toColorInt(),
+                    "#999999".toColorInt(),
                     keyboardBackground = backgroundImage
                 )
                 THEME_BLUE_GRAY -> DefaultColors(

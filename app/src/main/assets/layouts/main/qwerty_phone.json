@@ -5,7 +5,7 @@
     { "label": "e", "popup": { "main": { "label": "÷" } } },
     { "label": "r", "popup": { "main": { "label": "=" } } },
     { "label": "t", "popup": { "main": { "label": "/" } } },
-    { "label": "y", "popup": { "main": { "label": "\\" } } },
+    { "label": "y", "popup": { "main": { "label": "_" } } },
     { "label": "u", "popup": { "main": { "label": "<" } } },
     { "label": "i", "popup": { "main": { "label": ">" } } },
     { "label": "o", "popup": { "main": { "label": "[" } } },

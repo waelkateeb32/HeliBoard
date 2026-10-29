@@ -42,6 +42,7 @@ class App : Application() {
 
         RichInputMethodManager.init(this)
         checkVersionUpgrade(this)
+        applyCustomDefaultsOnce(this)
         if (BuildConfig.DEBUG) // do this on every debug apk start because we may work on adding a new toolbar key
             upgradeToolbarPrefs(prefs())
         transferOldPinnedClips(this) // todo: remove in a few months, maybe end 2026
@@ -58,4 +59,17 @@ class App : Application() {
             return application
         }
     }
+}
+
+/** custom fork: reset look/feel prefs once so new Samsung-like defaults apply over older installs */
+fun applyCustomDefaultsOnce(context: android.content.Context) {
+    val p = context.prefs()
+    val flag = "custom_defaults_v6_applied"
+    if (p.getBoolean(flag, false)) return
+    val e = p.edit()
+    listOf(Settings.PREF_VIBRATE_ON, Settings.PREF_POPUP_ON, Settings.PREF_VIBRATION_DURATION_SETTINGS,
+        Settings.PREF_KEY_LONGPRESS_TIMEOUT, Settings.PREF_THEME_COLORS, Settings.PREF_THEME_COLORS_NIGHT,
+        Settings.PREF_THEME_STYLE, Settings.PREF_THEME_KEY_BORDERS, Settings.PREF_LOCALIZED_NUMBER_ROW,
+        Settings.PREF_SHOW_NUMBER_ROW).forEach { e.remove(it) }
+    e.putBoolean(flag, true).apply()
 }
