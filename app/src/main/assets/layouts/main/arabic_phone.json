@@ -1,0 +1,43 @@
+// Custom AR layout: standard Arabic phone order with secondary hint symbols
+// Visual LTR (as on screen) == file order. Arabic subtype uses NoShiftKey.
+// Pair with localized number row (ar.txt already has ١-٠), custom functional row.
+[
+  [
+    { "label": "ض", "popup": { "main": { "label": "+" } } },
+    { "label": "ص", "popup": { "main": { "label": "×" } } },
+    { "label": "ث", "popup": { "main": { "label": "÷" } } },
+    { "label": "ق", "popup": { "main": { "label": "=" } } },
+    { "label": "ف", "popup": { "main": { "label": "/" } } },
+    { "label": "غ", "popup": { "main": { "label": "_" } } },
+    { "label": "ع", "popup": { "main": { "label": "<" } } },
+    { "label": "ه", "popup": { "main": { "label": ">" } } },
+    { "label": "خ", "popup": { "main": { "label": "[" } } },
+    { "label": "ح", "popup": { "main": { "label": "]" } } },
+    { "label": "ج", "popup": { "main": { "label": "~" } } }
+  ],
+  [
+    { "label": "ش", "popup": { "main": { "label": "!" } } },
+    { "label": "س", "popup": { "main": { "label": "\\@" } } },
+    { "label": "ي", "popup": { "main": { "label": "\\#" } } },
+    { "label": "ب", "popup": { "main": { "label": "$" } } },
+    { "label": "ل", "popup": { "main": { "label": "\\%" } } },
+    { "label": "ا", "popup": { "main": { "label": "&" } } },
+    { "label": "ت", "popup": { "main": { "label": "^" } } },
+    { "label": "ن", "popup": { "main": { "label": "*" } } },
+    { "label": "م", "popup": { "main": { "label": "-" } } },
+    { "label": "ك", "popup": { "main": { "label": "'" } } },
+    { "label": "ط", "popup": { "main": { "label": "\"" } } }
+  ],
+  [
+    { "label": "ذ" },
+    { "label": "ء", "popup": { "main": { "label": "'" } } },
+    { "label": "ؤ", "popup": { "main": { "label": "\"" } } },
+    { "label": "ر", "popup": { "main": { "label": ";" } } },
+    { "label": "ى", "popup": { "main": { "label": ":" } } },
+    { "label": "ة", "popup": { "main": { "label": "؟" } } },
+    { "label": "و", "popup": { "main": { "label": "!" } } },
+    { "label": "ز", "popup": { "main": { "label": "," } } },
+    { "label": "ظ", "popup": { "main": { "label": "." } } },
+    { "label": "د", "popup": { "main": { "label": "\\" } } }
+  ]
+]
