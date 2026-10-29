@@ -1,18 +1,18 @@
 [
   [
-    { "label": "shift", "width": 0.15 },
+    { "label": "shift", "width": 0.14 },
     { "type": "placeholder" },
-    { "label": "delete", "width": 0.15 }
+    { "label": "delete", "width": 0.14 }
   ],
   [
     { "$": "keyboard_state_selector",
       "alphabet": { "label": "!#1|!code/-10001", "width": 0.15, "type": "function", "labelFlags": 1073741824 },
       "default": { "label": "symbol_alpha", "width": 0.15 }
     },
-    { "label": "!", "type": "function", "labelFlags": 1073741824, "groupId": 1 },
+    { "label": "comma", "width": 0.1 },
     { "label": "space" },
     { "label": "language_switch" },
-    { "label": "period", "labelFlags": 1073741824 },
+    { "label": "period", "width": 0.1, "labelFlags": 1073741824 },
     { "label": "action", "width": 0.15, "labelFlags": 1073741824 }
   ]
 ]

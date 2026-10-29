@@ -29,7 +29,7 @@ class PhoneLayoutsTest {
         assertEquals(listOf(3, 6), rows.map { it.size })
         // physical order (functional rows are not mirrored for RTL): !#1 | ! | space | globe | . | action
         val labels = rows[1].map { (it as? helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData)?.label }
-        assertEquals(listOf(null, "!", "space", "language_switch", "period", "action"), labels)
+        assertEquals(listOf(null, "comma", "space", "language_switch", "period", "action"), labels)
     }
 
     @Test fun westernDigitsByDefault() {
