@@ -1,7 +1,7 @@
 # HeliBoard → screenshot-matching EN/AR layouts
 
 Upstream: https://github.com/HeliBorg/HeliBoard (main @ 44ddb1ae)
-Target fork: waelkateeb32/HeliBoard (**does not exist yet**; API fork returned 403)
+Target fork: https://github.com/waelkateeb32/HeliBoard (exists)
 Local clone: `/workspace/HeliBoard` on branch `custom-gboard-like-layouts`
 
 ## 1. Exact key maps from screenshots
@@ -108,7 +108,7 @@ Closest stock layouts:
 - `app/src/main/assets/layouts/functional/functional_keys_phone.json`
 - This plan file
 
-**Not done yet:** `method.xml` / `strings.xml` registration, Defaults theme changes, commit, push (no fork).
+**Wired:** method.xml (en_US + ar phone), donottranslate display names, Defaults (Rounded/borders/number row/black night), hint order prefers layout. Classic arabic kept as alternate subtype.
 
 ## 5. Blockers
 1. **Fork missing / cannot create:** `waelkateeb32/HeliBoard` 404; MCP `fork_repository` → 403 “Resource not accessible by integration”. User must fork in browser, or grant fork permission, then we push.

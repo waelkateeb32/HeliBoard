@@ -18,7 +18,7 @@ punctuation !fixedColumnOrder!7 ّ◌|ّ ْ◌|ْ َ◌|َ ِ◌|ِ ُ◌|ُ ٍ�
 
 [labels]
 alphabet: أ‌ب‌ج
-symbol: ٣٢١؟
+symbol: !#1
 comma: ،
 question: ؟
 

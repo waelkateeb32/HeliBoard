@@ -29,6 +29,7 @@
     <!-- Predefined keyboard layouts for additional subtype -->
     <string-array name="predefined_layouts">
         <item>qwerty</item>
+        <item>qwerty_phone</item>
         <item>qwertz</item>
         <item>azerty</item>
         <item>dvorak</item>
@@ -43,6 +44,7 @@
     <!-- Predefined keyboard layout display names -->
     <string-array name="predefined_layout_display_names">
         <item>QWERTY</item>
+        <item>QWERTY Phone</item>
         <item>QWERTZ</item>
         <item>AZERTY</item>
         <item>Dvorak</item>
@@ -60,6 +62,9 @@
 	
     <!-- Description for Bulgarian (BEKL) subtype. -->
     <string name="subtype_bulgarian_bekl" translatable="false">%s (BEKL)</string>
+
+    <!-- Description for Arabic (Phone) subtype — screenshot-matching layout. -->
+    <string name="subtype_arabic_phone" translatable="false">%s (Phone)</string>
 
     <!-- Description for Arabic (PC) subtype. -->
     <string name="subtype_arabic_pc" translatable="false">%s (PC)</string>

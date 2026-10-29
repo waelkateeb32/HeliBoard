@@ -27,7 +27,7 @@
         android:imeSubtypeLocale="en_US"
         android:languageTag="en-US"
         android:imeSubtypeMode="keyboard"
-        android:imeSubtypeExtraValue="TrySuppressingImeSwitcher,AsciiCapable,SupportTouchPositionCorrection,EmojiCapable"
+        android:imeSubtypeExtraValue="KeyboardLayoutSet=MAIN:qwerty_phone|FUNCTIONAL:functional_keys_phone,TrySuppressingImeSwitcher,AsciiCapable,SupportTouchPositionCorrection,EmojiCapable"
         android:isAsciiCapable="true"
         />
     <subtype android:icon="@drawable/ic_ime_switcher"
@@ -85,8 +85,17 @@
         android:isAsciiCapable="true"
     />
     <subtype android:icon="@drawable/ic_ime_switcher"
-        android:label="@string/subtype_generic"
+        android:label="@string/subtype_arabic_phone"
         android:subtypeId="0x590dde40"
+        android:imeSubtypeLocale="ar"
+        android:languageTag="ar"
+        android:imeSubtypeMode="keyboard"
+        android:imeSubtypeExtraValue="KeyboardLayoutSet=MAIN:arabic_phone|SYMBOLS:symbols_arabic|FUNCTIONAL:functional_keys_phone,NoShiftKey,SupportTouchPositionCorrection,EmojiCapable"
+        android:isAsciiCapable="false"
+    />
+    <subtype android:icon="@drawable/ic_ime_switcher"
+        android:label="@string/subtype_generic"
+        android:subtypeId="0x590dde43"
         android:imeSubtypeLocale="ar"
         android:languageTag="ar"
         android:imeSubtypeMode="keyboard"
