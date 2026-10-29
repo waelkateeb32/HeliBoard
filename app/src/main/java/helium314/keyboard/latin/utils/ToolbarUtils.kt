@@ -137,8 +137,12 @@ val defaultToolbarPref by lazy {
             others.joinToString(Separators.ENTRY) { it.name + Separators.KV + false }
 }
 
-val defaultPinnedToolbarPref = entries.filterNot { it == CLOSE_HISTORY }.joinToString(Separators.ENTRY) {
-    it.name + Separators.KV + false
+val defaultPinnedToolbarPref by lazy {
+    // shown on the right half of the strip while typing (see PREF_SPLIT_TOOLBAR_WHILE_TYPING)
+    val default = listOf(CLIPBOARD, PASTE, UNDO, SETTINGS)
+    val others = entries.filterNot { it in default || it == CLOSE_HISTORY }
+    default.joinToString(Separators.ENTRY) { it.name + Separators.KV + true } + Separators.ENTRY +
+            others.joinToString(Separators.ENTRY) { it.name + Separators.KV + false }
 }
 
 val defaultClipboardToolbarPref by lazy {

@@ -968,6 +968,8 @@ New dictionary:
     <string name="auto_hide_toolbar">Auto hide toolbar</string>
     <!-- Description of the setting for hiding the toolbar automatically -->
     <string name="auto_hide_toolbar_summary">Hide the toolbar when suggestions become available</string>
+    <string name="split_toolbar_while_typing">Split toolbar while typing</string>
+    <string name="split_toolbar_while_typing_summary">While typing, suggestions use the left half and pinned toolbar keys stay on the right half. The full toolbar shows when not typing.</string>
     <!-- Toast message shown when content is copied to the clipboard -->
     <string name="toast_msg_clipboard_copy">Content copied</string>
     <!-- Title of the setting to customize icons for keyboard and toolbar keys -->

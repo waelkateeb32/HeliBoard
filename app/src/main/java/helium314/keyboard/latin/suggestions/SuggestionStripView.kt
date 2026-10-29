@@ -170,6 +170,11 @@ class SuggestionStripView(context: Context, attrs: AttributeSet?, defStyle: Int)
             if (pinnedKeyInToolbar != null && Settings.getValues().mQuickPinToolbarKeys)
                 pinnedKeyInToolbar.background = enabledToolKeyBackground
         }
+        if (Settings.getValues().mSplitToolbarWhileTyping && pinnedKeys.childCount > 0) {
+            // while typing: suggestions take the left half, pinned keys the right half
+            suggestionsStrip.layoutParams = (suggestionsStrip.layoutParams as LinearLayout.LayoutParams).apply { width = 0; weight = 1f }
+            pinnedKeys.layoutParams = (pinnedKeys.layoutParams as LinearLayout.LayoutParams).apply { width = 0; weight = 1f }
+        }
         toolbarContainer.doOnNextLayout {
             // set min with of the toolbar so the weight of the toolbar keys actually does something
             // todo: results in requestLayout() improperly called by android.widget.LinearLayout during layout: running second layout pass
@@ -223,7 +228,12 @@ class SuggestionStripView(context: Context, attrs: AttributeSet?, defStyle: Int)
             direction = if (isRtlLanguage) -1 else 1
             toolbarExpandKey.scaleX = (if (toolbarContainer.visibility != VISIBLE) 1f else -1f) * direction
         }
-        layoutDirection = newLayoutDirection
+        if (Settings.getValues().mSplitToolbarWhileTyping) {
+            // keep pinned keys physically on the right, also for RTL languages
+            layoutDirection = LAYOUT_DIRECTION_LTR
+            direction = 1
+            toolbarExpandKey.scaleX = if (toolbarContainer.visibility != VISIBLE) 1f else -1f
+        } else layoutDirection = newLayoutDirection
         suggestionsStrip.layoutDirection = newLayoutDirection
     }
 

@@ -9,9 +9,9 @@
       "alphabet": { "label": "!#1|!code/-10001", "width": 0.15, "type": "function", "labelFlags": 1073741824 },
       "default": { "label": "symbol_alpha", "width": 0.15 }
     },
-    { "label": "language_switch" },
     { "label": "!", "type": "function", "labelFlags": 1073741824, "groupId": 1 },
     { "label": "space" },
+    { "label": "language_switch" },
     { "label": "period", "labelFlags": 1073741824 },
     { "label": "action", "width": 0.15, "labelFlags": 1073741824 }
   ]

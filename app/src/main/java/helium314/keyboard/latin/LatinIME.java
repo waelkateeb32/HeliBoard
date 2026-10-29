@@ -1500,7 +1500,8 @@ public class LatinIME extends InputMethodService implements
         setSuggestedWords(neutralSuggestions);
         if (hasSuggestionStripView() && currentSettings.mAutoShowToolbar) {
             final int codePointBeforeCursor = mInputLogic.mConnection.getCodePointBeforeCursor();
-            if (mInputLogic.mConnection.hasSelection()
+            if (currentSettings.mSplitToolbarWhileTyping
+                    || mInputLogic.mConnection.hasSelection()
                     || codePointBeforeCursor == Constants.NOT_A_CODE
                     || codePointBeforeCursor == Constants.CODE_ENTER) {
                 mSuggestionStripView.setToolbarVisibility(true);

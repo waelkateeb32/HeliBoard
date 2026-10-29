@@ -319,6 +319,8 @@
     <string name="auto_show_toolbar_summary">أظهِر شريط الأدوات في حالة بدء الإدخال أو تحديد النص</string>
     <string name="auto_hide_toolbar">أخفِ شريط الأدوات تلقائيًا</string>
     <string name="auto_hide_toolbar_summary">أخفِ شريط الأدوات عندما تصبح الاقتراحات متاحة</string>
+    <string name="split_toolbar_while_typing">تقسيم شريط الأدوات أثناء الكتابة</string>
+    <string name="split_toolbar_while_typing_summary">أثناء الكتابة تظهر الاقتراحات في النصف الأيسر وتبقى أزرار شريط الأدوات المثبتة في النصف الأيمن. يظهر الشريط كاملًا عند عدم الكتابة.</string>
     <string name="settings_screen_toolbar">شريط الأدوات</string>
     <string name="emoji" tools:keep="@string/emoji">رمز تعبيري</string>
     <string name="gesture_fast_typing_cooldown">التباطؤ السريع في الكتابة</string>

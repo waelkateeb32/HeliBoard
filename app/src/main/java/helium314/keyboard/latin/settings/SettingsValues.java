@@ -134,6 +134,7 @@ public class SettingsValues {
     public final boolean mToolbarHidingGlobal;
     public final boolean mAutoShowToolbar;
     public final boolean mAutoHideToolbar;
+    public final boolean mSplitToolbarWhileTyping;
     public final boolean mAlphaAfterEmojiInEmojiView;
     public final boolean mAlphaAfterClipHistoryEntry;
     public final EnumSet<KeyboardState.Mode> mAlphaAfterSpace = EnumSet.noneOf(KeyboardState.Mode.class);
@@ -324,6 +325,7 @@ public class SettingsValues {
         mLongPressSymbolsForNumpad = prefs.getBoolean(Settings.PREFS_LONG_PRESS_SYMBOLS_FOR_NUMPAD, Defaults.PREFS_LONG_PRESS_SYMBOLS_FOR_NUMPAD);
         mAutoShowToolbar = mToolbarMode == ToolbarMode.EXPANDABLE && prefs.getBoolean(Settings.PREF_AUTO_SHOW_TOOLBAR, Defaults.PREF_AUTO_SHOW_TOOLBAR);
         mAutoHideToolbar = mSuggestionsEnabled && prefs.getBoolean(Settings.PREF_AUTO_HIDE_TOOLBAR, Defaults.PREF_AUTO_HIDE_TOOLBAR);
+        mSplitToolbarWhileTyping = mToolbarMode == ToolbarMode.EXPANDABLE && prefs.getBoolean(Settings.PREF_SPLIT_TOOLBAR_WHILE_TYPING, Defaults.PREF_SPLIT_TOOLBAR_WHILE_TYPING);
         mAlphaAfterEmojiInEmojiView = prefs.getBoolean(Settings.PREF_ABC_AFTER_EMOJI, Defaults.PREF_ABC_AFTER_EMOJI);
         mAlphaAfterClipHistoryEntry = prefs.getBoolean(Settings.PREF_ABC_AFTER_CLIP, Defaults.PREF_ABC_AFTER_CLIP);
         if (prefs.getBoolean(Settings.PREF_ABC_AFTER_SYMBOL_SPACE, Defaults.PREF_ABC_AFTER_SYMBOL_SPACE)) {
