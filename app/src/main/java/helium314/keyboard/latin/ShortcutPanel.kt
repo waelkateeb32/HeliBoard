@@ -60,7 +60,18 @@ class ShortcutPanel(private val ime: LatinIME, root: View) {
     }
 
     fun handleCode(code: Int): Boolean {
-        if (!isShowing || !buffers.handleCode(code)) return false
+        if (!isShowing) return false
+        val cm = ime.getSystemService(android.content.ClipboardManager::class.java)
+        when (buffers.handleCode(code)) {
+            ShortcutBuffers.Action.NONE -> return false
+            ShortcutBuffers.Action.CONSUMED -> {}
+            ShortcutBuffers.Action.PASTE -> cm?.primaryClip?.takeIf { it.itemCount > 0 }?.getItemAt(0)
+                ?.coerceToText(ime)?.toString()?.let { buffers.handleText(it) }
+            ShortcutBuffers.Action.COPY -> buffers.activeText().takeIf { it.isNotEmpty() }
+                ?.let { cm?.setPrimaryClip(android.content.ClipData.newPlainText("", it)) }
+            ShortcutBuffers.Action.CUT -> buffers.cut().takeIf { it.isNotEmpty() }
+                ?.let { cm?.setPrimaryClip(android.content.ClipData.newPlainText("", it)) }
+        }
         caretOn = true; render(); return true
     }
 
