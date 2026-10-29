@@ -1324,4 +1324,10 @@ New dictionary:
     <string name="gesture_data_swipe_o_scope">Tool for visualizing gesture data: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
 
     <!-- new strings should go above the section for gesture data gathering -->
+    <string name="add_shortcut">Add shortcut</string>
+    <string name="shortcut_panel_abbrev">Shortcut</string>
+    <string name="shortcut_panel_full">Full text</string>
+    <string name="shortcut_panel_save">Save</string>
+    <string name="shortcut_panel_saved">Shortcut saved</string>
+    <string name="shortcut_panel_missing">Enter both shortcut and full text</string>
 </resources>

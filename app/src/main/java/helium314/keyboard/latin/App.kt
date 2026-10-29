@@ -43,6 +43,7 @@ class App : Application() {
         RichInputMethodManager.init(this)
         checkVersionUpgrade(this)
         applyCustomDefaultsOnce(this)
+        applyCustomDefaultsV7Once(this)
         if (BuildConfig.DEBUG) // do this on every debug apk start because we may work on adding a new toolbar key
             upgradeToolbarPrefs(prefs())
         transferOldPinnedClips(this) // todo: remove in a few months, maybe end 2026
@@ -72,4 +73,12 @@ fun applyCustomDefaultsOnce(context: android.content.Context) {
         Settings.PREF_THEME_STYLE, Settings.PREF_THEME_KEY_BORDERS, Settings.PREF_LOCALIZED_NUMBER_ROW,
         Settings.PREF_SHOW_NUMBER_ROW).forEach { e.remove(it) }
     e.putBoolean(flag, true).apply()
+}
+
+/** custom fork v7: reset pinned toolbar keys once so the new ADD_SHORTCUT key appears pinned on upgrade */
+fun applyCustomDefaultsV7Once(context: android.content.Context) {
+    val p = context.prefs()
+    val flag = "custom_defaults_v7_applied"
+    if (p.getBoolean(flag, false)) return
+    p.edit().remove(Settings.PREF_PINNED_TOOLBAR_KEYS).putBoolean(flag, true).apply()
 }

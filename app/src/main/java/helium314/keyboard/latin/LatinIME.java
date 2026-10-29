@@ -685,7 +685,23 @@ public class LatinIME extends InputMethodService implements
         mInsetsUpdater = ViewOutlineProviderUtilsKt.setInsetsOutlineProvider(view);
         KtxKt.updateSoftInputWindowLayoutParameters(this, mInputView);
         updateSuggestionStripView(view);
+        mShortcutPanel = new ShortcutPanel(this, view);
     }
+
+    private ShortcutPanel mShortcutPanel;
+
+    public void toggleShortcutPanel() { if (mShortcutPanel != null) mShortcutPanel.toggle(); }
+
+    @Override
+    public android.view.inputmethod.InputConnection getCurrentInputConnection() {
+        if (mShortcutPanel != null) {
+            final android.view.inputmethod.InputConnection ic = mShortcutPanel.getInputConnection();
+            if (ic != null) return ic;
+        }
+        return super.getCurrentInputConnection();
+    }
+
+    public InputLogic getInputLogicForPanel() { return mInputLogic; }
 
     public void updateSuggestionStripView(View view) {
         mSuggestionStripView = mSettings.getCurrent().mToolbarMode == ToolbarMode.HIDDEN || isEmojiSearch()?
@@ -719,6 +735,7 @@ public class LatinIME extends InputMethodService implements
         mStatsUtilsManager.onFinishInputView();
         mGestureConsumer = GestureConsumer.NULL_GESTURE_CONSUMER;
         BackgroundGatheringCache.saveOrClear(this);
+        if (mShortcutPanel != null) mShortcutPanel.hide();
     }
 
     @Override

@@ -16,6 +16,30 @@
         android:id="@+id/strip_container"
         layout="@layout/strip_container" />
 
+    <LinearLayout
+        android:id="@+id/shortcut_panel"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText android:id="@+id/shortcut_abbrev" android:hint="@string/shortcut_panel_abbrev"
+            android:singleLine="true" android:focusable="false" android:textSize="16sp"
+            android:layout_width="match_parent" android:layout_height="44dp" />
+        <EditText android:id="@+id/shortcut_full" android:hint="@string/shortcut_panel_full"
+            android:singleLine="true" android:focusable="false" android:textSize="16sp"
+            android:layout_width="match_parent" android:layout_height="44dp" />
+        <LinearLayout android:orientation="horizontal" android:gravity="end"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <Button android:id="@+id/shortcut_cancel" android:text="@android:string/cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content" android:layout_height="40dp" />
+            <Button android:id="@+id/shortcut_save" android:text="@string/shortcut_panel_save"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content" android:layout_height="40dp" />
+        </LinearLayout>
+    </LinearLayout>
+
     <!-- To ensure that key preview popup is correctly placed when the current system locale is
          one of RTL locales, layoutDirection="ltr" is needed in the SDK version 17+. -->
     <helium314.keyboard.latin.KeyboardWrapperView

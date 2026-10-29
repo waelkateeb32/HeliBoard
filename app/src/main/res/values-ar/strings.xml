@@ -561,4 +561,10 @@
     <string name="recent_emojis_cleared">مُحت الرموز التعبيرية الحديثة</string>
     <string name="prefs_enable_hardware_keyboard">دعم لوحات المفاتيح المادية</string>
     <string name="accent_shifted_icon">رمز «shift» مع علامة التشديد</string>
+    <string name="add_shortcut">إضافة اختصار</string>
+    <string name="shortcut_panel_abbrev">الاختصار</string>
+    <string name="shortcut_panel_full">النص الكامل</string>
+    <string name="shortcut_panel_save">حفظ</string>
+    <string name="shortcut_panel_saved">تم حفظ الاختصار</string>
+    <string name="shortcut_panel_missing">أدخل الاختصار والنص الكامل</string>
 </resources>
