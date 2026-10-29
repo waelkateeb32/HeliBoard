@@ -1,81 +1,95 @@
 // SPDX-License-Identifier: GPL-3.0-only
 package helium314.keyboard.latin
 
-import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.os.Handler
+import android.os.Looper
 import android.provider.UserDictionary
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputConnection
 import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import helium314.keyboard.latin.common.ColorType
 import helium314.keyboard.latin.settings.Settings
 
-/** In-keyboard panel to add a personal-dictionary shortcut. While shown, the keyboard types into the selected field. */
+/** In-keyboard panel to add a personal-dictionary shortcut. Fields are plain TextViews fed by key events. */
 class ShortcutPanel(private val ime: LatinIME, root: View) {
     private val panel: View? = root.findViewById(R.id.shortcut_panel)
-    private val abbrev: EditText? = root.findViewById(R.id.shortcut_abbrev)
-    private val full: EditText? = root.findViewById(R.id.shortcut_full)
-    private var active: EditText? = null
-    private var ic: InputConnection? = null
+    private val views: List<TextView> = listOfNotNull(root.findViewById(R.id.shortcut_abbrev), root.findViewById(R.id.shortcut_full))
+    private val buffers = ShortcutBuffers()
+    private val handler = Handler(Looper.getMainLooper())
+    private var caretOn = true
+    private val textColor = Settings.getValues().mColors.get(ColorType.KEY_TEXT)
+    private val accent = Settings.getValues().mColors.get(ColorType.ACTION_KEY_BACKGROUND)
+    private val blink = object : Runnable {
+        override fun run() { caretOn = !caretOn; render(); handler.postDelayed(this, 530) }
+    }
 
     init {
-        val colors = Settings.getValues().mColors
-        val textColor = colors.get(helium314.keyboard.latin.common.ColorType.KEY_TEXT)
-        listOfNotNull(abbrev, full).forEach { f ->
-            f.setTextColor(textColor)
-            f.setHintTextColor((textColor and 0x00ffffff) or 0x80000000.toInt())
-            f.showSoftInputOnFocus = false
-            f.setOnClickListener { select(f) }
+        views.forEachIndexed { i, v ->
+            v.setTextColor(textColor)
+            v.setHintTextColor((textColor and 0x00ffffff) or 0x80000000.toInt())
+            v.setOnClickListener { buffers.active = i; caretOn = true; render() }
         }
-        root.findViewById<Button>(R.id.shortcut_cancel)?.apply { setTextColor(textColor); setOnClickListener { hide() } }
+        root.findViewById<Button>(R.id.shortcut_cancel)?.apply { setTextColor(textColor); setOnClickListener { hide(true) } }
         root.findViewById<Button>(R.id.shortcut_save)?.apply { setTextColor(textColor); setOnClickListener { save() } }
     }
 
-    val inputConnection: InputConnection? get() = if (panel?.visibility == View.VISIBLE) ic else null
+    private val isShowing get() = panel?.visibility == View.VISIBLE
 
-    fun toggle() { if (panel?.visibility == View.VISIBLE) hide() else show() }
+    val visibleHeight: Int get() = if (isShowing) panel!!.height else 0
+
+    fun toggle() { if (isShowing) hide(true) else show() }
 
     private fun show() {
         val p = panel ?: return
         ime.inputLogicForPanel.mConnection.finishComposingText()
-        abbrev?.setText(""); full?.setText("")
+        buffers.active = 0
         p.visibility = View.VISIBLE
-        select(abbrev ?: return)
+        caretOn = true; render()
+        handler.removeCallbacks(blink); handler.postDelayed(blink, 530)
+        p.requestLayout()
     }
 
-    private fun select(f: EditText) {
-        if (active != null) ime.inputLogicForPanel.mConnection.finishComposingText()
-        active?.alpha = 0.6f
-        active = f
-        f.alpha = 1f
-        f.setSelection(f.text.length)
-        ic = f.onCreateInputConnection(EditorInfo().apply { inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS })
-        resetCaches(f.text.length)
+    fun hide(clear: Boolean) {
+        if (clear) buffers.clear()
+        handler.removeCallbacks(blink)
+        if (!isShowing) return
+        panel!!.visibility = View.GONE
+        panel.requestLayout()
     }
 
-    private fun resetCaches(pos: Int) {
-        runCatching { ime.inputLogicForPanel.mConnection.resetCachesUponCursorMoveAndReturnSuccess(pos, pos, false) }
+    fun handleCode(code: Int): Boolean {
+        if (!isShowing || !buffers.handleCode(code)) return false
+        caretOn = true; render(); return true
     }
 
-    fun hide() {
-        if (panel?.visibility != View.VISIBLE) return
-        ime.inputLogicForPanel.mConnection.finishComposingText()
-        panel.visibility = View.GONE
-        active = null; ic = null
-        val ei = ime.currentInputEditorInfo
-        resetCaches(ei?.initialSelStart?.coerceAtLeast(0) ?: 0)
+    fun handleText(text: String?): Boolean {
+        if (!isShowing || text == null) return false
+        buffers.handleText(text); caretOn = true; render(); return true
+    }
+
+    private fun render() {
+        val d = ime.resources.displayMetrics.density
+        views.forEachIndexed { i, v ->
+            val activeField = i == buffers.active
+            val t = buffers.fields[i].toString()
+            v.text = if (activeField && (t.isNotEmpty() || caretOn)) t + (if (caretOn) "|" else " ") else t
+            v.background = GradientDrawable().apply {
+                cornerRadius = 8 * d
+                setStroke(((if (activeField) 2 else 1) * d).toInt(), if (activeField) accent else (textColor and 0x00ffffff) or 0x40000000)
+            }
+        }
     }
 
     private fun save() {
-        ime.inputLogicForPanel.mConnection.finishComposingText()
-        val s = abbrev?.text?.toString()?.trim().orEmpty()
-        val w = full?.text?.toString()?.trim().orEmpty()
+        val s = buffers.fields[0].toString().trim()
+        val w = buffers.fields[1].toString().trim()
         if (s.isEmpty() || w.isEmpty()) {
             Toast.makeText(ime, R.string.shortcut_panel_missing, Toast.LENGTH_SHORT).show(); return
         }
         runCatching { UserDictionary.Words.addWord(ime, w, 250, s, null) }
-            .onSuccess { Toast.makeText(ime, R.string.shortcut_panel_saved, Toast.LENGTH_SHORT).show(); hide() }
+            .onSuccess { Toast.makeText(ime, R.string.shortcut_panel_saved, Toast.LENGTH_SHORT).show(); hide(true) }
             .onFailure { Toast.makeText(ime, it.message ?: "error", Toast.LENGTH_SHORT).show() }
     }
 }

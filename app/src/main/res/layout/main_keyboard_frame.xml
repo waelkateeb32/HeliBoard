@@ -23,12 +23,12 @@
         android:padding="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText android:id="@+id/shortcut_abbrev" android:hint="@string/shortcut_panel_abbrev"
-            android:singleLine="true" android:focusable="false" android:textSize="16sp"
-            android:layout_width="match_parent" android:layout_height="44dp" />
-        <EditText android:id="@+id/shortcut_full" android:hint="@string/shortcut_panel_full"
-            android:singleLine="true" android:focusable="false" android:textSize="16sp"
-            android:layout_width="match_parent" android:layout_height="44dp" />
+        <TextView android:id="@+id/shortcut_abbrev" android:hint="@string/shortcut_panel_abbrev"
+            android:singleLine="true" android:ellipsize="start" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp" android:textSize="17sp" android:clickable="true"
+            android:layout_marginBottom="4dp" android:layout_width="match_parent" android:layout_height="52dp" />
+        <TextView android:id="@+id/shortcut_full" android:hint="@string/shortcut_panel_full"
+            android:singleLine="true" android:ellipsize="start" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp" android:textSize="17sp" android:clickable="true"
+            android:layout_marginBottom="4dp" android:layout_width="match_parent" android:layout_height="52dp" />
         <LinearLayout android:orientation="horizontal" android:gravity="end"
             android:layout_width="match_parent" android:layout_height="wrap_content">
             <Button android:id="@+id/shortcut_cancel" android:text="@android:string/cancel"

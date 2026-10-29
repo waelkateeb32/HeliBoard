@@ -692,14 +692,8 @@ public class LatinIME extends InputMethodService implements
 
     public void toggleShortcutPanel() { if (mShortcutPanel != null) mShortcutPanel.toggle(); }
 
-    @Override
-    public android.view.inputmethod.InputConnection getCurrentInputConnection() {
-        if (mShortcutPanel != null) {
-            final android.view.inputmethod.InputConnection ic = mShortcutPanel.getInputConnection();
-            if (ic != null) return ic;
-        }
-        return super.getCurrentInputConnection();
-    }
+    public boolean shortcutPanelHandleCode(int code) { return mShortcutPanel != null && mShortcutPanel.handleCode(code); }
+    public boolean shortcutPanelHandleText(String text) { return mShortcutPanel != null && mShortcutPanel.handleText(text); }
 
     public InputLogic getInputLogicForPanel() { return mInputLogic; }
 
@@ -735,7 +729,7 @@ public class LatinIME extends InputMethodService implements
         mStatsUtilsManager.onFinishInputView();
         mGestureConsumer = GestureConsumer.NULL_GESTURE_CONSUMER;
         BackgroundGatheringCache.saveOrClear(this);
-        if (mShortcutPanel != null) mShortcutPanel.hide();
+        if (mShortcutPanel != null) mShortcutPanel.hide(false);
     }
 
     @Override
@@ -1143,7 +1137,8 @@ public class LatinIME extends InputMethodService implements
             return;
         }
         final int stripHeight = mKeyboardSwitcher.isShowingStripContainer() ? mKeyboardSwitcher.getStripContainer().getHeight() : 0;
-        int visibleTopY = inputHeight - visibleKeyboardView.getHeight() - stripHeight;
+        final int shortcutPanelHeight = mShortcutPanel != null ? mShortcutPanel.getVisibleHeight() : 0;
+        int visibleTopY = inputHeight - visibleKeyboardView.getHeight() - stripHeight - shortcutPanelHeight;
         if (Settings.getValues().mIsFloatingKeyboard)
             visibleTopY = getResources().getDisplayMetrics().heightPixels;
 
