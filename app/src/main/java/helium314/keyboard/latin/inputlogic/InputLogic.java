@@ -1467,6 +1467,12 @@ public final class InputLogic {
      * Handle a press on the language switch key (the "globe key")
      */
     private void handleLanguageSwitchKey() {
+        if (helium314.keyboard.keyboard.internal.keyboard_parser.ArabicUsOverlay.active) {
+            // custom fork: tapping globe leaves the Arabic-background US keyboard, back to the current language
+            helium314.keyboard.keyboard.internal.keyboard_parser.ArabicUsOverlay.active = false;
+            helium314.keyboard.keyboard.internal.keyboard_parser.ArabicUsOverlay.reload();
+            return;
+        }
         mLatinIME.switchToNextSubtype();
     }
 

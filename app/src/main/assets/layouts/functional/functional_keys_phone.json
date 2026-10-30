@@ -10,8 +10,8 @@
       "default": { "label": "symbol_alpha", "width": 0.15 }
     },
     { "label": "comma", "width": 0.1 },
-    { "label": "space" },
     { "label": "language_switch" },
+    { "label": "space" },
     { "label": "period", "width": 0.1, "labelFlags": 1073741824 },
     { "label": "action", "width": 0.15, "labelFlags": 1073741824 }
   ]

@@ -100,11 +100,12 @@ class KeyboardParser(private val params: KeyboardParams, private val context: Co
             params.mBaseWidth = params.mOccupiedWidth - params.mLeftPadding - params.mRightPadding
         }
 
+        val overlay = ArabicUsOverlay.active && element.isAlphabet
         val numberRow = getNumberRow()
-        addNumberRowOrPopupKeys(baseKeys, numberRow)
-        if (element.isAlphabet)
+        if (!overlay) addNumberRowOrPopupKeys(baseKeys, numberRow)
+        if (element.isAlphabet && !overlay)
             addSymbolPopupKeys(baseKeys)
-        if (element.isAlphaOrSymbol && params.mId.numberRowEnabled) {
+        if (element.isAlphaOrSymbol && params.mId.numberRowEnabled && !overlay) {
             val newLabelFlags = defaultLabelFlags or
                     if (Settings.getValues().mShowNumberRowHints) 0 else Key.LABEL_FLAGS_DISABLE_HINT_LABEL
             baseKeys.add(0, numberRow.mapTo(mutableListOf()) { it.copy(newLabelFlags = newLabelFlags) })

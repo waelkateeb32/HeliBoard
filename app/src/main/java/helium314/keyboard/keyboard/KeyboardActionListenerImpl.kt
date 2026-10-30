@@ -16,6 +16,7 @@ import helium314.keyboard.event.HardwareEventDecoder
 import helium314.keyboard.event.HardwareKeyboardEventDecoder
 import helium314.keyboard.keyboard.internal.LayoutDirective
 import helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyCode
+import helium314.keyboard.keyboard.internal.keyboard_parser.ArabicUsOverlay
 import helium314.keyboard.latin.AudioAndHapticFeedbackManager
 import helium314.keyboard.latin.EmojiAltPhysicalKeyDetector
 import helium314.keyboard.latin.LatinIME
@@ -108,6 +109,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
         when (primaryCode) {
             KeyCode.TOGGLE_AUTOCORRECT -> return settings.toggleAutoCorrect()
             KeyCode.ADD_SHORTCUT -> return latinIME.toggleShortcutPanel()
+            KeyCode.TOGGLE_ARABIC_US -> { ArabicUsOverlay.active = !ArabicUsOverlay.active; ArabicUsOverlay.reload(); return }
             KeyCode.TOGGLE_INCOGNITO_MODE -> {
                 settings.toggleAlwaysIncognitoMode()
                 BackgroundGatheringCache.clear()
@@ -198,7 +200,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
 
     override fun onHorizontalSpaceSwipe(steps: Int): Boolean = when (Settings.getValues().mSpaceSwipeHorizontal) {
         KeyboardActionListener.SwipeAction.MOVE_CURSOR -> onMoveCursorHorizontally(steps)
-        KeyboardActionListener.SwipeAction.SWITCH_LANGUAGE -> onLanguageSlide(steps)
+        KeyboardActionListener.SwipeAction.SWITCH_LANGUAGE -> false // custom fork: disabled
         KeyboardActionListener.SwipeAction.TOGGLE_NUMPAD -> {
             toggleLayout(LayoutDirective.Utility.NUMPAD, latinIME.currentAutoCapsState, latinIME.currentRecapitalizeState)
             true
@@ -212,7 +214,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
 
     override fun onVerticalSpaceSwipe(steps: Int): Boolean = when (Settings.getValues().mSpaceSwipeVertical) {
         KeyboardActionListener.SwipeAction.MOVE_CURSOR -> onMoveCursorVertically(steps)
-        KeyboardActionListener.SwipeAction.SWITCH_LANGUAGE -> onLanguageSlide(steps)
+        KeyboardActionListener.SwipeAction.SWITCH_LANGUAGE -> false // custom fork: disabled
         KeyboardActionListener.SwipeAction.TOGGLE_NUMPAD -> {
             toggleLayout(LayoutDirective.Utility.NUMPAD, latinIME.currentAutoCapsState, latinIME.currentRecapitalizeState)
             true

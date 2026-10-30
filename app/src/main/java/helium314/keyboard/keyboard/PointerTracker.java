@@ -1170,8 +1170,14 @@ public final class PointerTracker implements PointerTrackerQueue.Element,
             sListener.onReleaseKey(popupKeyCode, false);
             return;
         }
-        if (code == KeyCode.LANGUAGE_SWITCH
-                || (code == Constants.CODE_SPACE && key.getPopupKeys() == null && Settings.getValues().mSpaceForLangChange)
+        if (code == KeyCode.LANGUAGE_SWITCH) {
+            // custom fork: long-press globe toggles the US keyboard with Arabic background letters
+            cancelKeyTracking();
+            sListener.onCodeInput(KeyCode.TOGGLE_ARABIC_US, Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE, false);
+            sListener.onReleaseKey(code, false);
+            return;
+        }
+        if ((code == Constants.CODE_SPACE && key.getPopupKeys() == null && Settings.getValues().mSpaceForLangChange)
         ) {
             // Long pressing the space key invokes IME switcher dialog.
             if (sListener.onCustomRequest(KeyboardActionListener.CustomAction.SHOW_INPUT_METHOD_PICKER)) {

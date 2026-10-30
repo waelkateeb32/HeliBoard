@@ -44,6 +44,7 @@ class App : Application() {
         checkVersionUpgrade(this)
         applyCustomDefaultsOnce(this)
         applyCustomDefaultsV7Once(this)
+        applyCustomDefaultsV10Once(this)
         if (BuildConfig.DEBUG) // do this on every debug apk start because we may work on adding a new toolbar key
             upgradeToolbarPrefs(prefs())
         transferOldPinnedClips(this) // todo: remove in a few months, maybe end 2026
@@ -81,4 +82,18 @@ fun applyCustomDefaultsV7Once(context: android.content.Context) {
     val flag = "custom_defaults_v7_applied"
     if (p.getBoolean(flag, false)) return
     p.edit().remove(Settings.PREF_PINNED_TOOLBAR_KEYS).putBoolean(flag, true).apply()
+}
+
+/** custom fork v10: unlimited clipboard, language change only via globe key */
+fun applyCustomDefaultsV10Once(context: android.content.Context) {
+    val p = context.prefs()
+    val flag = "custom_defaults_v10_applied"
+    if (p.getBoolean(flag, false)) return
+    val e = p.edit()
+    e.putInt(Settings.PREF_CLIPBOARD_HISTORY_RETENTION_TIME, 121)
+    e.remove(Settings.PREF_SPACE_TO_CHANGE_LANG).remove(Settings.PREF_LANGUAGE_SWITCH_KEY).remove(Settings.PREF_SHOW_LANGUAGE_SWITCH_KEY)
+    listOf(Settings.PREF_SPACE_HORIZONTAL_SWIPE, Settings.PREF_SPACE_VERTICAL_SWIPE).forEach {
+        if (p.getString(it, null) == "SWITCH_LANGUAGE") e.remove(it)
+    }
+    e.putBoolean(flag, true).apply()
 }

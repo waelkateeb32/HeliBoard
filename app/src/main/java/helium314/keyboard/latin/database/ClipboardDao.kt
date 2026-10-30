@@ -188,6 +188,8 @@ class ClipboardDao private constructor(private val db: Database) {
     }
 
     fun clearOldClips(now: Boolean = false) {
+        return // custom fork: clipboard history is kept forever
+        @Suppress("UNREACHABLE_CODE")
         if (listener != null)
             return // never clear when clipboard is visible
         if (!now && lastClearOldClips > SystemClock.elapsedRealtime() - 5 * 1000)

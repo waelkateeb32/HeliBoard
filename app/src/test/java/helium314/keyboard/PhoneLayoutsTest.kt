@@ -29,7 +29,7 @@ class PhoneLayoutsTest {
         assertEquals(listOf(3, 6), rows.map { it.size })
         // physical order (functional rows are not mirrored for RTL): !#1 | ! | space | globe | . | action
         val labels = rows[1].map { (it as? helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData)?.label }
-        assertEquals(listOf(null, "comma", "space", "language_switch", "period", "action"), labels)
+        assertEquals(listOf(null, "comma", "language_switch", "space", "period", "action"), labels)
     }
 
     @Test fun westernDigitsByDefault() {
@@ -37,5 +37,21 @@ class PhoneLayoutsTest {
         kotlin.test.assertFalse(helium314.keyboard.latin.settings.Defaults.PREF_LOCALIZED_NUMBER_ROW)
         val row = LayoutParser.parseJsonString(load("number_row/number_row.json")).first()
         assertEquals(10, row.size)
+    }
+
+    @Test fun arabicUsBackgroundParses() {
+        val rows = LayoutParser.parseJsonString(load("main/arabic_us_background.json"))
+        assertEquals(listOf(13, 12, 11, 10), rows.map { it.size })
+        val keys = rows.flatten().map { it as helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData }
+        val map = keys.associate { it.label to (it.popup.main as? helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData)?.label }
+        assertEquals("ض", map["q"]); assertEquals("لا", map["b"]); assertEquals("ظ", map["/"]); assertEquals("ذ", map["`"])
+        assertEquals("١", map["1"]); assertEquals(null, map["-"])
+        // only one background (hint) character per key, nothing else
+        keys.forEach { assertTrue(it.popup.relevant.isNullOrEmpty()) }
+    }
+
+    @Test fun clipboardKeptForever() {
+        assertTrue(helium314.keyboard.latin.settings.Defaults.PREF_CLIPBOARD_HISTORY_RETENTION_TIME > 120)
+        kotlin.test.assertFalse(helium314.keyboard.latin.settings.Defaults.PREF_SPACE_TO_CHANGE_LANG)
     }
 }

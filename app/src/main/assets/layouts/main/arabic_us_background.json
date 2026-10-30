@@ -1,0 +1,368 @@
+[
+ [
+  {
+   "label": "`",
+   "popup": {
+    "main": {
+     "label": "ذ"
+    }
+   }
+  },
+  {
+   "label": "1",
+   "popup": {
+    "main": {
+     "label": "١"
+    }
+   }
+  },
+  {
+   "label": "2",
+   "popup": {
+    "main": {
+     "label": "٢"
+    }
+   }
+  },
+  {
+   "label": "3",
+   "popup": {
+    "main": {
+     "label": "٣"
+    }
+   }
+  },
+  {
+   "label": "4",
+   "popup": {
+    "main": {
+     "label": "٤"
+    }
+   }
+  },
+  {
+   "label": "5",
+   "popup": {
+    "main": {
+     "label": "٥"
+    }
+   }
+  },
+  {
+   "label": "6",
+   "popup": {
+    "main": {
+     "label": "٦"
+    }
+   }
+  },
+  {
+   "label": "7",
+   "popup": {
+    "main": {
+     "label": "٧"
+    }
+   }
+  },
+  {
+   "label": "8",
+   "popup": {
+    "main": {
+     "label": "٨"
+    }
+   }
+  },
+  {
+   "label": "9",
+   "popup": {
+    "main": {
+     "label": "٩"
+    }
+   }
+  },
+  {
+   "label": "0",
+   "popup": {
+    "main": {
+     "label": "٠"
+    }
+   }
+  },
+  {
+   "label": "-"
+  },
+  {
+   "label": "="
+  }
+ ],
+ [
+  {
+   "label": "q",
+   "popup": {
+    "main": {
+     "label": "ض"
+    }
+   }
+  },
+  {
+   "label": "w",
+   "popup": {
+    "main": {
+     "label": "ص"
+    }
+   }
+  },
+  {
+   "label": "e",
+   "popup": {
+    "main": {
+     "label": "ث"
+    }
+   }
+  },
+  {
+   "label": "r",
+   "popup": {
+    "main": {
+     "label": "ق"
+    }
+   }
+  },
+  {
+   "label": "t",
+   "popup": {
+    "main": {
+     "label": "ف"
+    }
+   }
+  },
+  {
+   "label": "y",
+   "popup": {
+    "main": {
+     "label": "غ"
+    }
+   }
+  },
+  {
+   "label": "u",
+   "popup": {
+    "main": {
+     "label": "ع"
+    }
+   }
+  },
+  {
+   "label": "i",
+   "popup": {
+    "main": {
+     "label": "ه"
+    }
+   }
+  },
+  {
+   "label": "o",
+   "popup": {
+    "main": {
+     "label": "خ"
+    }
+   }
+  },
+  {
+   "label": "p",
+   "popup": {
+    "main": {
+     "label": "ح"
+    }
+   }
+  },
+  {
+   "label": "[",
+   "popup": {
+    "main": {
+     "label": "ج"
+    }
+   }
+  },
+  {
+   "label": "]",
+   "popup": {
+    "main": {
+     "label": "د"
+    }
+   }
+  }
+ ],
+ [
+  {
+   "label": "a",
+   "popup": {
+    "main": {
+     "label": "ش"
+    }
+   }
+  },
+  {
+   "label": "s",
+   "popup": {
+    "main": {
+     "label": "س"
+    }
+   }
+  },
+  {
+   "label": "d",
+   "popup": {
+    "main": {
+     "label": "ي"
+    }
+   }
+  },
+  {
+   "label": "f",
+   "popup": {
+    "main": {
+     "label": "ب"
+    }
+   }
+  },
+  {
+   "label": "g",
+   "popup": {
+    "main": {
+     "label": "ل"
+    }
+   }
+  },
+  {
+   "label": "h",
+   "popup": {
+    "main": {
+     "label": "ا"
+    }
+   }
+  },
+  {
+   "label": "j",
+   "popup": {
+    "main": {
+     "label": "ت"
+    }
+   }
+  },
+  {
+   "label": "k",
+   "popup": {
+    "main": {
+     "label": "ن"
+    }
+   }
+  },
+  {
+   "label": "l",
+   "popup": {
+    "main": {
+     "label": "م"
+    }
+   }
+  },
+  {
+   "label": ";",
+   "popup": {
+    "main": {
+     "label": "ك"
+    }
+   }
+  },
+  {
+   "label": "'",
+   "popup": {
+    "main": {
+     "label": "ط"
+    }
+   }
+  }
+ ],
+ [
+  {
+   "label": "z",
+   "popup": {
+    "main": {
+     "label": "ئ"
+    }
+   }
+  },
+  {
+   "label": "x",
+   "popup": {
+    "main": {
+     "label": "ء"
+    }
+   }
+  },
+  {
+   "label": "c",
+   "popup": {
+    "main": {
+     "label": "ؤ"
+    }
+   }
+  },
+  {
+   "label": "v",
+   "popup": {
+    "main": {
+     "label": "ر"
+    }
+   }
+  },
+  {
+   "label": "b",
+   "popup": {
+    "main": {
+     "label": "لا"
+    }
+   }
+  },
+  {
+   "label": "n",
+   "popup": {
+    "main": {
+     "label": "ى"
+    }
+   }
+  },
+  {
+   "label": "m",
+   "popup": {
+    "main": {
+     "label": "ة"
+    }
+   }
+  },
+  {
+   "label": ",",
+   "popup": {
+    "main": {
+     "label": "و"
+    }
+   }
+  },
+  {
+   "label": ".",
+   "popup": {
+    "main": {
+     "label": "ز"
+    }
+   }
+  },
+  {
+   "label": "/",
+   "popup": {
+    "main": {
+     "label": "ظ"
+    }
+   }
+  }
+ ]
+]
